@@ -1,21 +1,23 @@
 import Head from 'next/head';
-import { useState, useEffect } from 'react';
 import Heading from '../../components/Heading';
 
-const Contacts = () => {
-  const [contacts, setContacts] = useState(null);
+export const getStaticProps = async () => {
+  const response = await fetch('https://jsonplaceholder.typicode.com/users');
+  const data = null;
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const response = await fetch(
-        'https://jsonplaceholder.typicode.com/users'
-      );
-      const data = await response.json();
-      setContacts(data);
+  if (!data) {
+    return {
+      notFound: true,
     };
-    fetchData();
-  }, []);
+  } // если запрос не выполнился
 
+  return {
+    props: { contacts: data },
+  };
+}; // отображение на клиентской части, а не на серверной
+
+// компонент Contacts принял contacts для работы с данными
+const Contacts = ({ contacts }) => {
   return (
     <>
       <Head>
