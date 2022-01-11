@@ -3,7 +3,7 @@ import Link from 'next/link';
 import Heading from '../../components/Heading';
 
 export const getStaticProps = async () => {
-  const response = await fetch('https://jsonplaceholder.typicode.com/users');
+  const response = await fetch('https://jsonplaceholder.typicode.com/posts');
   const data = await response.json();
 
   if (!data) {
@@ -13,23 +13,22 @@ export const getStaticProps = async () => {
   } // если запрос не выполнился
 
   return {
-    props: { contacts: data },
+    props: { posts: data },
   };
 }; // отображение на клиентской части, а не на серверной
 
-// компонент Contacts принял contacts для работы с данными
-const Contacts = ({ contacts }) => {
+const Posts = ({ posts }) => {
   return (
     <>
       <Head>
-        <title>Contacts</title>
+        <title>Posts</title>
       </Head>
-      <Heading text="Contacts list:" />
+      <Heading text="Posts list:" />
       <ul>
-        {contacts &&
-          contacts.map(({ id, name }) => (
+        {posts &&
+          posts.map(({ id, title }) => (
             <li key={id}>
-              <Link href={`/contacts/${id}`}>{name}</Link>
+              <Link href={`/posts/${id}`}>{title}</Link>
             </li>
           ))}
       </ul>
@@ -37,4 +36,4 @@ const Contacts = ({ contacts }) => {
   );
 };
 
-export default Contacts;
+export default Posts;
