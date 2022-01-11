@@ -3,7 +3,7 @@ import Heading from '../../components/Heading';
 
 export const getStaticProps = async () => {
   const response = await fetch('https://jsonplaceholder.typicode.com/users');
-  const data = null;
+  const data = await response.json();
 
   if (!data) {
     return {
