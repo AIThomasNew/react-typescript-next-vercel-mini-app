@@ -1,7 +1,9 @@
+import Heading from '../../components/Heading';
+
 const Contact = () => {
   return (
     <>
-      <h1>Agent Smith</h1>;
+      <Heading text="Thomas Anderson - Neo" />
     </>
   );
 };
