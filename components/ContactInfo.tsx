@@ -1,6 +1,13 @@
+import { FC } from 'react';
 import Heading from './Heading';
+import { contactType } from '../types';
 
-const ContactInfo = ({ contact }) => {
+type contactInfoProps = {
+  contact: contactType;
+};
+
+// доб. Functional Component
+const ContactInfo: FC<contactInfoProps> = ({ contact }) => {
   const { name, email, address } = contact || {};
   const { street, suite, city, zipcode } = address || {};
 
